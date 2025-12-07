@@ -1,0 +1,38 @@
+# Default configuration for generative model evaluation
+
+seed: 42
+device: auto  # auto, cuda, mps, cpu
+batch_size: 32
+num_workers: 4
+
+data:
+  dataset: cifar10  # cifar10, mnist, fashion_mnist
+  data_dir: ./data
+  image_size: 64
+  normalize: true
+
+metrics:
+  fid:
+    enabled: true
+    batch_size: 64
+    feature_extractor: inception_v3
+  is:
+    enabled: true
+    splits: 10
+    feature_extractor: inception_v3
+  precision_recall:
+    enabled: true
+    k: 3
+  lpips:
+    enabled: true
+    net: alex
+
+logging:
+  log_dir: ./logs
+  use_wandb: false
+  use_tensorboard: true
+
+output:
+  save_samples: true
+  sample_dir: ./assets/samples
+  n_samples: 16
